@@ -1,0 +1,30 @@
+<div class="m-3">
+  <div class="m-md-5 mt-5">
+    <div class="m-3">
+      <h1 class="text-center">Sign-in</h1>
+    </div>
+    <div class="row">
+      <form [formGroup]="form" (submit)="login()">
+        <div class="offset-md-3 col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input [class.is-invalid]="form.errors?.email" formControlName="username" type="email" class="form-control" placeholder="example@hh.kz">
+            <span *ngIf="form.errors?.email" class="invalid-feedback"> {{ form.errors?.email }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+
+            <div class="input-group">
+              <input [class.is-invalid]="form.errors?.password" formControlName="password" type="password" class="form-control">
+              <span *ngIf="form.errors?.password" class="invalid-feedback"> {{ form.errors?.password }} </span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center my-3">
+            <a [routerLink]="'/register/applicant'" class="btn btn-outline-dark">Not have an account?</a>
+          </div>
+          <button [disabled]="form.disabled" type="submit" class="btn btn-dark">Sign-in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

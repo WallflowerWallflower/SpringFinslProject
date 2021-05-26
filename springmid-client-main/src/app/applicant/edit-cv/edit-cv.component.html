@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5" *ngIf="ready">
+    <div>
+      <h1 class="text-center">{{(isEdit) ? 'Edit' : 'Create'}} CV</h1>
+    </div>
+    <div class="my-3">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <form [formGroup]="form">
+            <div class="my-3">
+              <label>Name:</label>
+              <input formControlName="name" class="form-control">
+            </div>
+            <div class="my-3">
+              <label>Salary:</label>
+              <input formControlName="salary" class="form-control">
+            </div>
+            <div class="my-3">
+              <label>Image:</label>
+              <input type="file" accept=".jpg, .jpeg, .png" class="form-control">
+            </div>
+            <div class="my-3">
+              <label>Experience:</label>
+              <input formControlName="xp" class="form-control">
+            </div>
+            <div class="my-3">
+              <label>Description:</label>
+              <textarea formControlName="description" class="form-control" style="resize: none" rows="4"></textarea>
+            </div>
+            <div class="my-3">
+              <label>Skills:</label>
+              <input (keydown.enter)="addSkill(skillInput.value); skillInput.value = ''" #skillInput class="form-control">
+            </div>
+            <div class="my-3">
+              <div class="btn btn-secondary m-2" style="cursor: unset" *ngFor="let skill of skills; let i = index">{{skill}} <i (click)="skills.splice(i, 1)" class="ms-2 fa fa-window-close clickable"></i></div>
+            </div>
+            <button type="button" (click)="submit()" class="btn btn-outline-dark">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

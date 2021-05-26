@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between m-2">
+      <h5 class="card-title">{{ job.name }}</h5>
+      <i (click)="(has) ? removeFavourite() : addFavourite()" [class.text-warning]="has" class="fa fa-star clickable"></i>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Salary: {{job.salary}} $</p>
+    <p class="card-text">City: {{job.city.name}}</p>
+    <p class="card-text">Company: {{job.user.name}}</p>
+    <p class="card-text">{{job.description}}</p>
+    <div class="d-flex justify-content-between">
+      <a [routerLink]="'/applicant/vacancy/' + job.id" class="btn btn-primary">Show</a>
+      <button class="btn btn-outline-dark">{{job.createdAt | date: 'dd.MM.Y'}}</button>
+    </div>
+  </div>
+</div>

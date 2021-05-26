@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5">
+    <div>
+      <h1 class="text-center">Create vacancy</h1>
+    </div>
+    <div class="my-3">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <form [formGroup]="form">
+            <div class="my-3">
+              <label>Name:</label>
+              <input required class="form-control" formControlName="name">
+            </div>
+            <div class="my-3">
+              <label>Salary:</label>
+              <input required class="form-control" formControlName="salary" type="number">
+            </div>
+            <div class="my-3">
+              <label>City:</label>
+              <select required class="form-select" formControlName="cityId">
+                <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+              </select>
+            </div>
+            <div class="my-3">
+              <label>Sphere:</label>
+              <select required class="form-select" formControlName="sphereId">
+                <option *ngFor="let city of spheres" [value]="city.id">{{ city.name }}</option>
+              </select>
+            </div>
+            <div class="my-3">
+              <label>Type:</label>
+              <select required class="form-select" formControlName="typeId">
+                <option *ngFor="let city of types" [value]="city.id">{{ city.name }}</option>
+              </select>
+            </div>
+            <div class="my-3">
+              <label>Experience:</label>
+              <input required class="form-control" formControlName="xp" type="number">
+            </div>
+            <div class="my-3">
+              <label>Description:</label>
+              <textarea required class="form-control" style="resize: none" rows="4" formControlName="description"></textarea>
+            </div>
+            <div class="my-3">
+              <label>Skills:</label>
+              <input required (keydown.enter)="addSkill(skillInput.value); skillInput.value = ''" #skillInput class="form-control">
+            </div>
+            <div class="my-3">
+              <div class="btn btn-secondary m-2" style="cursor: unset" *ngFor="let skill of skills; let i = index">{{skill}} <i (click)="skills.splice(i, 1)" class="ms-2 fa fa-window-close clickable"></i></div>
+            </div>
+            <button type="button" class="btn btn-outline-dark" (click)="submit()">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

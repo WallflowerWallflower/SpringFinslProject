@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5" *ngIf="ready">
+    <div>
+      <h1>{{ cv.name }}</h1>
+      <h3 class="fw-normal">Salary: {{cv.salary}} $</h3>
+    </div>
+    <div class="card my-4">
+      <div class="card-header d-flex justify-content-between">
+        <div class="my-auto">
+          <button class="btn btn-outline-dark fw-normal">Name: {{cv?.user?.name}}</button>
+          <div class="card-text m-2">
+            Experience: {{cv.xp}} years
+          </div>
+        </div>
+        <div>
+          <img src="/assets/imgs/applicant.jpg" width="200px">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-text m-2">
+          Phone: <a href="tel:{{cv.user.phone}}">{{cv.user.phone}}</a>
+        </div>
+        <div class="card-text m-2">
+          {{cv.description}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <h4 class="text-center my-3">Skills</h4>
+        <div>
+          <div class="btn btn-secondary m-2" *ngFor="let skill of skills">{{skill}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="my-3 d-flex justify-content-between">
+      <button (click)="contact(jobVal.value)" class="btn btn-outline-dark">
+        Contact
+      </button>
+      <select class="form-select ms-3" #jobVal>
+        <option *ngFor="let job of jobs" [value]="job.id">{{job.name}}</option>
+      </select>
+    </div>
+  </div>
+</div>

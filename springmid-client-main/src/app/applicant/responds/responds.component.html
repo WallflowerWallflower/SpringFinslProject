@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5">
+    <h1 class="mb-4 text-center">Responds</h1>
+    <div class="row" *ngIf="ready">
+      <div class="offset-md-2 col-md-8  mb-3 p-0">
+        <select class="form-select">
+          <option value="">All</option>
+          <option value="">Invite</option>
+          <option value="">Expecting</option>
+          <option value="">Denial</option>
+        </select>
+      </div>
+      <div class="offset-md-2 col-md-8 border-0 border-bottom p-3 border">
+        <div class="row">
+          <div class="col-md-2 text-secondary">
+            Status
+          </div>
+          <div class="col-md-7 text-secondary">
+            Name
+          </div>
+          <div class="col-md-3 text-secondary">
+            Date
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-2 col-md-8 border-top-0 p-3 border" *ngFor="let item of jobCvs">
+        <div class="row">
+          <div class="col-md-2">
+            <span *ngIf="(item.jobApplied == 1)" class="text-success fw-bold">Invite</span>
+            <span *ngIf="(item.jobApplied == 0)" class="text-secondary fw-bold">Expecting</span>
+            <span *ngIf="(item.jobApplied == -1)" class="text-danger fw-bold">Denial</span>
+            <div *ngIf="(item.jobApplied == 1 && item.cvApplied == 0)" class="btn-group-sm">
+              <button (click)="apply(item.id)" class="btn btn-success">
+                <i class="fa fa-check"></i>
+              </button>
+              <button (click)="denial(item.id)" class="ms-2 btn btn-danger">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+            <div *ngIf="(item.jobApplied == 1 && item.cvApplied == 1)">
+              <button [routerLink]="'/applicant/responds/' + item.id" class="btn btn-primary">
+                Message
+              </button>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div>
+              <a class="text-decoration-none" *ngIf="(item.jobApplied == 1 && item.cvApplied == 1)" [routerLink]="'/applicant/responds/' + item.id">{{item.cv.name}}</a>
+              <span *ngIf="!(item.jobApplied == 1 && item.cvApplied == 1)">{{item.cv.name}}</span>
+            </div>
+            <div class="text-secondary">
+              {{item.cv.description}}
+            </div>
+          </div>
+          <div class="col-md-3 text-secondary">
+            <div>
+              <a class="text-decoration-none">{{item.job.name}}</a>
+            </div>
+            <div class="text-secondary">
+              {{item.job.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

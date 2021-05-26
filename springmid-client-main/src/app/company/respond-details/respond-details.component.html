@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5" *ngIf="ready">
+    <h1 class="mb-4 text-center">Invited</h1>
+    <div class="my-3">
+      Vacancy: <button class="btn btn-primary">{{jobCv.job.name}}</button> from company <button class="btn btn-primary">
+    {{jobCv.job.user.name}}
+    </button>
+    </div>
+    <div class="my-3">
+      CV: <button [routerLink]="'/company/cv/' + jobCv.cvId" class="btn btn-primary">{{jobCv.cv.name}}</button>
+    </div>
+    <div *ngFor="let mess of messages" class="bg-light border rounded my-3">
+      <div class="border-bottom">
+        <img class="me-2 border border-dark" [src]="'/assets/imgs/' + mess.user.roles[0].name + '.jpg'" width="80px">
+        <strong>{{ mess.user.name }}</strong>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="p-3">
+          {{ mess.text }}
+        </div>
+        <div class="text-secondary">
+          {{mess.createdAt | date : 'dd.MM.Y HH:mm:ss'}}
+        </div>
+      </div>
+    </div>
+    <div class="my-3">
+      <textarea #text class="form-control" style="resize: none"></textarea>
+      <button (click)="submit(text.value); text.value = ''" class="btn btn-success my-3">Submit</button>
+    </div>
+  </div>
+</div>

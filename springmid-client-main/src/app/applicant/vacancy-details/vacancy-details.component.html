@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5" *ngIf="ready">
+    <div>
+      <h1>{{ job.name }}</h1>
+      <h3 class="fw-normal">Salary: {{ job.salary }} $</h3>
+    </div>
+    <div class="card my-4">
+      <div class="card-header d-flex justify-content-between">
+        <div class="my-auto">
+          <button class="btn btn-outline-dark fw-normal">Company: {{ job.user.name }}</button>
+          <div class="card-text m-2">
+            City: {{ job.city.name }}
+          </div>
+        </div>
+        <div>
+          <img src="/assets/imgs/company.jpg" width="200px">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-text m-2">
+          Experience: {{ job.xp }} years
+        </div>
+        <div class="card-text m-2">
+          Type: {{ job.type.name }}
+        </div>
+        <div class="card-text m-2">
+          {{ job.description }}
+        </div>
+      </div>
+      <div class="card-footer">
+        <h4 class="text-center my-3">Skills</h4>
+        <div>
+          <div class="btn btn-secondary m-2" *ngFor="let skill of skills">{{ skill }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="my-3 d-flex justify-content-between">
+      <button (click)="contact(cvVal.value)" class="btn btn-outline-dark">
+        Contact
+      </button>
+      <select class="form-select ms-3" #cvVal>
+        <option *ngFor="let cv of cvs" [value]="cv.id">{{cv.name}}</option>
+      </select>
+    </div>
+  </div>
+</div>

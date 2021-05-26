@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="container">
+  <div class="my-5">
+    <h1 class="text-center mb-4">Vacancies</h1>
+    <form [formGroup]="form" class="d-flex" (submit)="submit()">
+      <input formControlName="keywords" class="form-control me-2" placeholder="Keywords">
+      <select formControlName="typeId" class="form-select me-2">
+        <option selected hidden>Type</option>
+        <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+      </select>
+      <select formControlName="cityId" class="form-select me-2">
+        <option selected hidden>City</option>
+        <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+      </select>
+      <select formControlName="sphereId" class="form-select me-2">
+        <option selected hidden>Sphere</option>
+        <option *ngFor="let city of spheres" [value]="city.id">{{city.name}}</option>
+      </select>
+      <input formControlName="salary" type="number" class="form-control me-2" placeholder="Min Salary">
+      <button class="btn btn-outline-dark" type="submit">Search</button>
+    </form>
+    <div class="my-4">
+      <div class="row" *ngIf="ready">
+        <div class="col-md-6 py-3" *ngFor="let job of jobs">
+          <app-vacancy-card [job]="job"></app-vacancy-card>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
